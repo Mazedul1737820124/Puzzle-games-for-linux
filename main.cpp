@@ -1,17 +1,18 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
 int main() {
 
 
-    RenderWindow app(VideoMode(470, 470), "****Puzzle****");
+    RenderWindow app(VideoMode(470, 470), "****PicArr****");
     app.setFramerateLimit(100);
 
     Texture m;
-    m.loadFromFile("/home/mazedul/Education/Projects/Puzzle/images/logos.png");
+    m.loadFromFile("/home/mazedul/Education/Projects/PicArr/images/logos.png");
 
     int Squaresize = 120;
-    int grid[6][6] = {0};
+    int PicArr[6][6] = {0};
     Sprite sprite[20];
 
     int count = 0;
@@ -21,7 +22,7 @@ int main() {
             count++;
             sprite[count].setTexture(m);
             sprite[count].setTextureRect(IntRect(i * Squaresize, j * Squaresize, Squaresize, Squaresize));
-            grid[i + 1][j + 1];
+            PicArr[i + 1][j + 1];
 
         }
     while (app.isOpen()) {
@@ -42,22 +43,22 @@ int main() {
                     int dx = 0;
                     int dy = 0;
 
-                    if (grid[x + 1][y] == 16) {
+                    if (PicArr[x + 1][y] == 16) {
                         dx = 1;
                         dy = 0;
                     }
 
-                    if (grid[x][y + 1] == 16) {
+                    if (PicArr[x][y + 1] == 16) {
                         dx = 0;
                         dy = 1;
                     }
-                    if (grid[x][y - 1] == 16) {
+                    if (PicArr[x][y - 1] == 16) {
 
                         dx = 0;
                         dy = -1;
                     }
 
-                    if (grid[x - 1][y] == 16) {
+                    if (PicArr[x - 1][y] == 16) {
                         dx = -1;
                         dy = 0;
                     }
@@ -65,6 +66,9 @@ int main() {
                 }
 
         }
+
+        app.clear(Color::Red);
+        app.display();
     }
 
     return 0;
