@@ -1,15 +1,20 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
+#include <ncurses.h>
+
+//#include <tclOODecls.h>
+
 
 using namespace sf;
 using namespace std;
 void Operation();
 void PlayGame();
-void Htp();
+void Instc();
 void About();
 void Close();
 
-char Ch;
+int Ch;
 char Ch1;
 
 int Count = 0;
@@ -34,7 +39,7 @@ void PlayGame() {
         for (int j = 0; j < 4; ++j) {
             count++;
             sprite[count].setTexture(m);
-            sprite[count].setTextureRect(IntRect( i* Squaresize,  j* Squaresize, Squaresize - 5, Squaresize - 5));
+            sprite[count].setTextureRect(IntRect( j* Squaresize,  i* Squaresize, Squaresize - 5, Squaresize - 5));
             PicArr[i + 1][j + 1] = count;
 //           app.draw(sprite[count]);
 //            app.display();
@@ -49,7 +54,7 @@ void PlayGame() {
                 app.close();
 
             if (p.type == Event::MouseButtonPressed)
-                if (p.key.code == Mouse::Left) {
+                if (p.key.code == Keyboard::Left) {
 
                     Vector2i pos = Mouse::getPosition(app);
                     int x = pos.x / Squaresize +1;
@@ -111,39 +116,47 @@ void PlayGame() {
 
 }
 
-void Htp(){
+void Instc(){
 
-    cout<<"\n\nThe 15-type sliding puzzle, because all of its pieces are squares"<<endl;
-    cout<<"is one of the most straightforward to solve. If you need some help, "<<endl;
-    cout<<"here are a few hints : "<<endl;
 
-    cout<<"\n       <> Begin by maneuvering the 1 and 2 into their proper positions in the "<<endl;
-    cout<<"          upper left corner."<<endl;
-    cout<<"\n       <> Position the 3 in the upper right corner."<<endl;
-    cout<<"\n       <> Maneuver the 4 under the 3."<<endl;
-    cout<<"\n       <> Now slide the 3 to the left and the 4 up; the first row is done."<<endl;
-    cout<<"\n       <> Repeat this process with next row, leaving row above intact."<<endl;
-    cout<<"\n       <> Complete the puzzle by rearranging the pieces in the last two rows"<<endl;
-    cout<<"          until they are in position."<<endl;
-    cout<<"\n       <> Sometimes it's easier to create snakes of pieces in the proper order"<<endl;
-    cout<<"          rather than put them in their final position individually."<<endl;
-    cout<<"\n       <> If you're assembling a picture, study the design carefully before "<<endl;
-    cout<<"          it's scrambled. It's harder to solve if you're not clear about the "<<endl;
-    cout<<"          final outcome."<<endl;
+
+    cout<<"\n\n****************************************************"<<endl;
+    cout<<"*                                                  *"<<endl;
+    cout<<"*                 Instruction                      *"<<endl;
+    cout<<"*                -------------                     *"<<endl;
+    cout<<"*                                                  *"<<endl;
+    cout<<"*  <> You can only move the empty tile with        *"<<endl;
+    cout<<"*     a puzzle tile                                *"<<endl;
+    cout<<"*                                                  *"<<endl;
+    cout<<"*  <> You can not lift the tiles                   *"<<endl;
+    cout<<"*                                                  *"<<endl;
+    cout<<"*  <> User can only the empty tile in up,down,     *"<<endl;
+    cout<<"*     left and right direction                     *"<<endl;
+    cout<<"*                                                  *"<<endl;
+    cout<<"*                                                  *"<<endl;
+    cout<<"*                                                  *"<<endl;
+    cout<<"****************************************************"<<endl;
 
 }
 
 
 void About(){
 
-    cout<<"\n\nDeveloper  : Md. Mazedul Islam (Bangladeshi)" <<endl;
-    cout<<"Designer   : Md. Mazedul Islam (Bangladeshi)"<<endl;
-    cout<<"Contact    "<<endl;
-    cout<<"Phone      : +8801770554970"<<endl;
-    cout<<"Email      : mazedulislam4970@gmail.com"<<endl;
-    cout<<"Github     : https://www.github.com/mazedul1737820124"<<endl;
-    cout<<"Twitter    : https://www.twitter.com/mazedul70"<<endl;
-    cout<<"Facebook   : https://www.facebook.com/mamazedulislam70"<<endl;
+    cout<<"\n\n***********************************************************"<<endl;
+    cout<<"*                                                         *"<<endl;
+    cout<<"*                    About me                             *"<<endl;
+    cout<<"*                  -----------                            *"<<endl;
+    cout<<"*   Developer  : Md. Mazedul Islam (Bangladeshi)          *"<<endl;
+    cout<<"*   Designer   : Md. Mazedul Islam (Bangladeshi)          *"<<endl;
+    cout<<"*   Contact                                               *"<<endl;
+    cout<<"*   Phone      : +8801770554970                           *"<<endl;
+    cout<<"*   Email      : mazedulislam4970@gmail.com               *"<<endl;
+    cout<<"*   Github     : https://www.github.com/mazedul1737820124 *"<<endl;
+    cout<<"*   Twitter    : https://www.twitter.com/mazedul70        *"<<endl;
+    cout<<"*   Facebook   : https://facebook.com/mamazedulislam70    *"<<endl;
+    cout<<"*                                                         *"<<endl;
+    cout<<"*                                                         *"<<endl;
+    cout<<"***********************************************************"<<endl;
 }
 
 
@@ -158,7 +171,7 @@ void Operation() {
         cout << "*            # Puzzle game #                        *" << endl;
         cout << "*                                                   *" << endl;
         cout << "*           Press 1 for play                        *" << endl;
-        cout << "*           Press 2 for how to play                 *" << endl;
+        cout << "*           Press 2 for instruction                 *" << endl;
         cout << "*           Press 3 for exit                        *" << endl;
         cout << "*           Press 4 for about me                    *" << endl;
         cout << "*                                                   *" << endl;
@@ -167,35 +180,37 @@ void Operation() {
         cout << "*                                                   *" << endl;
         cout << "*****************************************************"<<endl;
         X:
-        cout << "\nPlease enter your choice  and : enter " << endl;
+        cout << "\nPlease enter your choice  and  enter : ";
 
         cin >> Ch;
 
         switch (Ch) {                //Choice option
 
-            case '1' :
-
+            case 1 :
+                system("CLS");
                 PlayGame();        //Call game
                 //system("CLS");
 
                 break;
 
-            case '2' :
+            case 2 :
 
-                Htp();//Game procedures
-               // system("CLS");
+                system("CLS");
+                Instc();//Game procedures
+
 
                 break;
 
-            case '3' :
+            case 3 :
                 system("CLS");
                 Close();//Close program
 
 
-            case '4' :
+            case 4 :
 
+                system("CLS");
                 About();            //About developers
-                //system("CLS");
+
 
                 break;
 
@@ -206,17 +221,15 @@ void Operation() {
 
                     Close();
                 }
-                system("CLS");
+                system("clear");
 
                 cout << " \nInvalid choice!!! : try again\n" << endl;
                 goto X;
 
         }
 
-        cout << "\n\nDo you want to continue : [Y/N] " << endl;
+        cout << "\n\nDo you want to continue [Y/N] : " ;
         cin >> Ch1;
-
-
         system("CLS");
     } while (Ch1 == 'Y' || Ch1 == 'y');
 
@@ -247,7 +260,7 @@ int main(){// main function
 
     Operation();
 
-    return 0;
+    return 1;
 
 }
 
