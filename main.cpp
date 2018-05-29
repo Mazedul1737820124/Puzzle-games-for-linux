@@ -1,10 +1,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include <ncurses.h>
-
-//#include <tclOODecls.h>
-
 
 using namespace sf;
 using namespace std;
@@ -13,9 +9,11 @@ void PlayGame();
 void Instc();
 void About();
 void Close();
+void clrscr();
 
 int Ch;
-char Ch1;
+string Ch1;
+int Cnt = 0;
 
 int Count = 0;
 
@@ -30,7 +28,7 @@ void PlayGame() {
     m.loadFromFile("/home/mazedul/Education/Projects/Puzzle/update/images/logos.png");
 
     int Squaresize = 120;
-    int PicArr[6][6] = {0};
+    int PicArr[6][6] = {1};
     Sprite sprite[20];
 
     int count = 0;
@@ -39,7 +37,7 @@ void PlayGame() {
         for (int j = 0; j < 4; ++j) {
             count++;
             sprite[count].setTexture(m);
-            sprite[count].setTextureRect(IntRect( j* Squaresize,  i* Squaresize, Squaresize - 5, Squaresize - 5));
+            sprite[count].setTextureRect(IntRect( j* Squaresize,  i* Squaresize, Squaresize - 4, Squaresize - 4));
             PicArr[i + 1][j + 1] = count;
 //           app.draw(sprite[count]);
 //            app.display();
@@ -54,7 +52,7 @@ void PlayGame() {
                 app.close();
 
             if (p.type == Event::MouseButtonPressed)
-                if (p.key.code == Keyboard::Left) {
+                if (p.key.code == Mouse::Left) {
 
                     Vector2i pos = Mouse::getPosition(app);
                     int x = pos.x / Squaresize +1;
@@ -82,6 +80,9 @@ void PlayGame() {
                         dx = -1;
                         dy = 0;
                     }
+
+                    ++Cnt;
+
 
                     int n = PicArr[x][y];
                     PicArr[x][y] = 16;
@@ -159,13 +160,28 @@ void About(){
     cout<<"***********************************************************"<<endl;
 }
 
+void clrscr(){
+
+    for (int i = 0; i < 50 ; ++i) {
+        cout<<"\n";
+
+    }
+}
+
+void  clrscr1(){
+
+    for (int i = 0; i < 12 ; ++i) {
+        cout<<"\n";
+
+    }
+}
 
 
 void Operation() {
 
     do {
-        cout << "\n\n\n" << endl;
 
+        cout << "\n\n\n" << endl;
         cout << "*****************************************************" <<endl;
         cout << "*                                                   *" << endl;
         cout << "*                   Puzzle game                     *" << endl;
@@ -182,38 +198,40 @@ void Operation() {
         cout << "*****************************************************"<<endl;
         X:
         cout << "\nPlease enter your choice  and  enter : ";
+        clrscr1();
 
-        cin >> Ch;
+        cin >>Ch;
 
-        switch (Ch) {                //Choice option
+        switch (Ch) {                // Choice option
 
-            case 1 :
-                system("CLS");
-                PlayGame();        //Call game
-                //system("CLS");
+            case 1:
+               clrscr();
+                PlayGame();//Call game
+                cout<<"No. of Move : "<<Cnt<<endl;
 
                 break;
 
             case 2 :
 
-                system("CLS");
+                clrscr();
                 Instc();//Game procedures
 
 
                 break;
 
             case 3 :
-                system("CLS");
+                clrscr();
                 Close();//Close program
 
 
             case 4 :
 
-                system("CLS");
+                clrscr();
                 About();            //About developers
 
 
                 break;
+
 
             default:
                 ++Count;
@@ -222,19 +240,23 @@ void Operation() {
 
                     Close();
                 }
-                system("clear");
 
+                clrscr();
                 cout << " \nInvalid choice!!! : try again\n" << endl;
+                if(Count == 2)
+                 cout<<"Last change "<<endl;
                 goto X;
 
         }
 
         cout << "\n\nDo you want to continue [Y/N] : " ;
+        clrscr1();
         cin >> Ch1;
-        system("CLS");
+
     } while (Ch1 == 'Y' || Ch1 == 'y');
 
 }
+
 
 void Close(){
 
@@ -254,6 +276,7 @@ void Close(){
     cout<<"*                                                  *"<<endl;
     cout<<"****************************************************"<<endl;
 
+    clrscr1();
     exit(1);
 }
 
@@ -261,7 +284,7 @@ int main(){// main function
 
     Operation();
 
-    return 1;
+    return 0;
 
 }
 
