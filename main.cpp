@@ -13,6 +13,7 @@ void clrscr();
 
 int Ch;
 string Ch1;
+char Name[100];
 int Cnt = 0;
 
 int Count = 0;
@@ -25,7 +26,7 @@ void PlayGame() {
     Texture m;
 
 
-    m.loadFromFile("/home/mazedul/Education/Projects/Puzzle/update/images/logos.png");
+    m.loadFromFile("/home/mazedul/Education/Projects/Puzzle-game/images/logos.png");
 
     int Squaresize = 120;
     int PicArr[6][6] = {1};
@@ -39,8 +40,6 @@ void PlayGame() {
             sprite[count].setTexture(m);
             sprite[count].setTextureRect(IntRect( j* Squaresize,  i* Squaresize, Squaresize - 4, Squaresize - 4));
             PicArr[i + 1][j + 1] = count;
-//           app.draw(sprite[count]);
-//            app.display();
 
         }
     while (app.isOpen()) {
@@ -117,47 +116,95 @@ void PlayGame() {
 
 }
 
+
+void Sol() {
+
+    RenderWindow app(VideoMode(470, 470), "****PUZZLE****");
+    app.setFramerateLimit(100);
+
+    Texture m;
+
+
+    m.loadFromFile("/home/mazedul/Education/Projects/Puzzle-game/images/logos.png");
+
+    int Squaresize = 120;
+    int PicArr[6][6] = {1};
+    Sprite sprite[20];
+
+    int count = 0;
+
+    for (int i = 0; i < 4; ++i)
+        for (int j = 0; j < 4; ++j) {
+            count++;
+            sprite[count].setTexture(m);
+            sprite[count].setTextureRect(IntRect( i* Squaresize,  j* Squaresize, Squaresize - 4, Squaresize - 4));
+            PicArr[i + 1][j + 1] = count;
+
+        }
+    while (app.isOpen()) {
+
+        Event p;
+
+        while (app.pollEvent(p)) {
+            if (p.type == Event::Closed)
+                app.close();
+      }
+
+        for (int i=0;i<4;i++)
+            for (int j = 0; j < 4; j++) {
+
+                int n = PicArr[i + 1][j + 1];
+                sprite[n].setPosition(i * Squaresize, j * Squaresize);
+                app.draw(sprite[n]);
+
+            }
+
+        app.display();
+    }
+
+}
+
 void Instc(){
 
+cout<<"\n\n";
 
-
-    cout<<"\n\n****************************************************"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                 Instruction                      *"<<endl;
-    cout<<"*                -------------                     *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*  <> You can only move the empty tile with        *"<<endl;
-    cout<<"*     a puzzle tile                                *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*  <> You can not lift the tiles                   *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*  <> User can only the empty tile in up,down,     *"<<endl;
-    cout<<"*     left and right direction                     *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"****************************************************"<<endl;
+    cout<<"                                                        ****************************************************"<<endl;
+    cout<<"                                                        *                                                  *"<<endl;
+    cout<<"                                                        *                 Instruction                      *"<<endl;
+    cout<<"                                                        *                -------------                     *"<<endl;
+    cout<<"                                                        *                                                  *"<<endl;
+    cout<<"                                                        *  <> You can only move the empty tile with        *"<<endl;
+    cout<<"                                                        *     a puzzle tile                                *"<<endl;
+    cout<<"                                                        *                                                  *"<<endl;
+    cout<<"                                                        *  <> You can not lift the tiles                   *"<<endl;
+    cout<<"                                                        *                                                  *"<<endl;
+    cout<<"                                                        *  <> User can only the empty tile in up,down,     *"<<endl;
+    cout<<"                                                        *     left and right direction                     *"<<endl;
+    cout<<"                                                        *                                                  *"<<endl;
+    cout<<"                                                        *                                                  *"<<endl;
+    cout<<"                                                        *                                                  *"<<endl;
+    cout<<"                                                        ****************************************************"<<endl;
 
 }
 
 
 void About(){
 
-    cout<<"\n\n***********************************************************"<<endl;
-    cout<<"*                                                         *"<<endl;
-    cout<<"*                    About me                             *"<<endl;
-    cout<<"*                  -----------                            *"<<endl;
-    cout<<"*   Developer  : Md. Mazedul Islam (Bangladeshi)          *"<<endl;
-    cout<<"*   Designer   : Md. Mazedul Islam (Bangladeshi)          *"<<endl;
-    cout<<"*   Contact                                               *"<<endl;
-    cout<<"*   Phone      : +8801770554970                           *"<<endl;
-    cout<<"*   Email      : mazedulislam4970@gmail.com               *"<<endl;
-    cout<<"*   Github     : https://www.github.com/mazedul1737820124 *"<<endl;
-    cout<<"*   Twitter    : https://www.twitter.com/mazedul70        *"<<endl;
-    cout<<"*   Facebook   : https://facebook.com/mamazedulislam70    *"<<endl;
-    cout<<"*                                                         *"<<endl;
-    cout<<"*                                                         *"<<endl;
-    cout<<"***********************************************************"<<endl;
+    cout<<"                                                       ***********************************************************"<<endl;
+    cout<<"                                                       *                                                         *"<<endl;
+    cout<<"                                                       *                    About me                             *"<<endl;
+    cout<<"                                                       *                  -----------                            *"<<endl;
+    cout<<"                                                       *   Developer  : Md. Mazedul Islam (Bangladeshi)          *"<<endl;
+    cout<<"                                                       *   Designer   : Md. Mazedul Islam (Bangladeshi)          *"<<endl;
+    cout<<"                                                       *   Contact                                               *"<<endl;
+    cout<<"                                                       *   Phone      : +8801770554970                           *"<<endl;
+    cout<<"                                                       *   Email      : mazedulislam4970@gmail.com               *"<<endl;
+    cout<<"                                                       *   Github     : https://www.github.com/mazedul1737820124 *"<<endl;
+    cout<<"                                                       *   Twitter    : https://www.twitter.com/mazedul70        *"<<endl;
+    cout<<"                                                       *   Facebook   : https://facebook.com/mamazedulislam70    *"<<endl;
+    cout<<"                                                       *                                                         *"<<endl;
+    cout<<"                                                       *                                                         *"<<endl;
+    cout<<"                                                       ***********************************************************"<<endl;
 }
 
 void clrscr(){
@@ -182,22 +229,23 @@ void Operation() {
     do {
 
         cout << "\n\n\n" << endl;
-        cout << "*****************************************************" <<endl;
-        cout << "*                                                   *" << endl;
-        cout << "*                   Puzzle game                     *" << endl;
-        cout << "*                  -------------                    *" << endl;
-        cout << "*                                                   *" << endl;
-        cout << "*           Press 1 for play                        *" << endl;
-        cout << "*           Press 2 for instruction                 *" << endl;
-        cout << "*           Press 3 for exit                        *" << endl;
-        cout << "*           Press 4 for about me                    *" << endl;
-        cout << "*                                                   *" << endl;
-        cout << "*                                                   *" << endl;
-        cout << "*                                                   *" << endl;
-        cout << "*                                                   *" << endl;
-        cout << "*****************************************************"<<endl;
+        cout << "                                                  *****************************************************" <<endl;
+        cout << "                                                  *                                                   *" << endl;
+        cout << "                                                  *                   Puzzle game                     *" << endl;
+        cout << "                                                  *                  -------------                    *" << endl;
+        cout << "                                                  *                                                   *" << endl;
+        cout << "                                                  *           Press 1 for play                        *" << endl;
+        cout << "                                                  *           Press 2 for Solution                    *" << endl;
+        cout<<  "                                                  *           Press 3 for Instruction                 *"<<endl;
+        cout << "                                                  *           Press 4 for exit                        *" << endl;
+        cout << "                                                  *           Press 5 for about me                    *" << endl;
+        cout << "                                                  *                                                   *" << endl;
+        cout << "                                                  *                                                   *" << endl;
+        cout << "                                                  *                                                   *" << endl;
+        cout << "                                                  *                                                   *" << endl;
+        cout << "                                                  *****************************************************"<<endl;
         X:
-        cout << "\nPlease enter your choice  and  enter : ";
+        cout << "                                                  Please enter your choice : ";
         clrscr1();
 
         cin >>Ch;
@@ -207,11 +255,30 @@ void Operation() {
             case 1:
                clrscr();
                 PlayGame();//Call game
-                cout<<"No. of Move : "<<Cnt<<endl;
+                clrscr1();
+                cout<<"                                               *****************************************************"<<endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *    User        : "<<Name<<"                    *"<<endl;
+                cout<<"                                               *    No. of Move : "<<Cnt<<"                                *"<< endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *                                                   *" << endl;
+                cout<<"                                               *****************************************************"<<endl;
+                Cnt = 0;
 
                 break;
 
             case 2 :
+                Sol();
+                clrscr1();
+                break;
+            case 3 :
 
                 clrscr();
                 Instc();//Game procedures
@@ -219,12 +286,12 @@ void Operation() {
 
                 break;
 
-            case 3 :
+            case 4 :
                 clrscr();
                 Close();//Close program
 
 
-            case 4 :
+            case 5 :
 
                 clrscr();
                 About();            //About developers
@@ -242,14 +309,15 @@ void Operation() {
                 }
 
                 clrscr();
-                cout << " \nInvalid choice!!! : try again\n" << endl;
+                cout << "                                                    Invalid choice!!! : try again\n" << endl;
                 if(Count == 2)
-                 cout<<"Last change "<<endl;
+                 cout<<"                                                    Last chance"<<endl;
                 goto X;
 
         }
 
-        cout << "\n\nDo you want to continue [Y/N] : " ;
+        cout<<"\n\n";
+        cout << "                                                       Do you want to continue [Y/N] : " ;
         clrscr1();
         cin >> Ch1;
 
@@ -260,21 +328,22 @@ void Operation() {
 
 void Close(){
 
-    cout<<"\n\n****************************************************"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                 Program exit                     *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"*                                                  *"<<endl;
-    cout<<"****************************************************"<<endl;
+    cout<<"\n\n";
+    cout<<"                                                            ****************************************************"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                 Program exit                     *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            *                                                  *"<<endl;
+    cout<<"                                                            ****************************************************"<<endl;
 
     clrscr1();
     exit(1);
@@ -282,6 +351,9 @@ void Close(){
 
 int main(){// main function
 
+    clrscr1();
+    cout<<"                                                             Enter your name : ";
+    cin.getline(Name,100);
     Operation();
 
     return 0;
